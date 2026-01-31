@@ -1,0 +1,14 @@
+[Unit]
+Description=ZoneEdit DDClient updater
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Run as a non-privileged user if you prefer; ensure it can write to `state_dir`.
+User=root
+ExecStart=/usr/bin/zoneedit_ddclient --daemon --config /etc/zoneedit_ddclient.ini
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

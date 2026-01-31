@@ -1,0 +1,30 @@
+# Disclaimer: This project is not affiliated with or supported by ZoneEdit. It was created by the maintainer as a replacement for `ddclient` on **RHEL 10** and other **RPM-based distributions** where `ddclient` is no longer supported.
+
+[zoneedit]
+# Your ZoneEdit hostnames (comma-separated list), e.g.: vpn.example.com, plex.example.com
+hostnames = vpn.example.com, plex.example.com
+# Your ZoneEdit username (user)
+username = user
+# Your ZoneEdit account password
+password = youraccountpassword
+# Service to check your public IP (default: api.ipify.org)
+check_ip_service = https://api.ipify.org
+# ddclient-style: if you want to scrape an external website for your IP, set:
+# use = web
+# web = http://checkip.dyndns.org
+# protocol = zoneedit1  # optional compatibility flag
+# You can also override the ZoneEdit server (ddclient uses `server=dynamic.zoneedit.com`):
+# server = dynamic.zoneedit.com
+# Seconds between checks when running in daemon mode
+# NOTE: ZoneEdit commonly enforces a minimum interval (600 seconds). Set this to >= 600 to avoid rate limits.
+interval = 300
+# Enable/disable backoff when rate-limited (true/false)
+# backoff = true
+# Maximum backoff seconds (when rate-limited); default 3600
+# backoff_max = 3600
+# Directory to store last known IP files
+state_dir = /var/lib/zoneedit_ddclient
+# User-Agent string sent to ZoneEdit (set to identify your client)
+user_agent = zoneedit-ddclient/1.0 (contact: you@example.com)
+# Optional: network interface to use for IP detection (e.g., eth0). If set, the script will use the interface's IPv4 address
+# interface = eth0
