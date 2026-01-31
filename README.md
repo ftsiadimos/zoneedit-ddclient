@@ -1,12 +1,39 @@
 # ZoneEdit DDClient Updater 🔧
 
-**Disclaimer:** This project is not affiliated with or supported by ZoneEdit. It was created by the maintainer as a replacement for `ddclient` on **RHEL 10** and other **RPM-based distributions** where `ddclient` is no longer supported.
+<p>
+  <img alt="version" src="https://img.shields.io/badge/version-1.0-blue.svg" />
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-brightgreen.svg" />
+  <img alt="packaging" src="https://img.shields.io/badge/packaging-RPM-lightgrey.svg" />
+</p>
 
-Description
+<div style="background-color:#fff2f0;border-left:4px solid #ff4d4f;padding:12px;margin-bottom:12px;">
+<strong>⚠️ Disclaimer:</strong> Not affiliated with ZoneEdit. Created as a replacement for `ddclient` on **RHEL 10** and other RPM-based distributions. Use at your own risk.
+</div>
+
+## Table of contents
+- 💡 [Description](#description)
+- ⬇️ [Downloads](#downloads)
+- 📦 [Install via RPM](#install-via-rpm)
+- ⚡ [Quick start](#quick-start)
+- 📝 [Notes](#notes)
+
+- 🐙 [Install from Git](#install-from-git)
+
+<a id="description"></a>
+## Description <a href="#description">🔗</a> <span style="background:#eee;border-radius:4px;padding:2px 6px;font-size:90%;margin-left:8px;">description</span>
 
 ZoneEdit DDClient Updater is a lightweight Python service that keeps A records hosted on ZoneEdit in sync with your current public IPv4. It can run once for an immediate update or run as a long-lived systemd-managed daemon to periodically verify and update your IP. The service supports reading the IP from a local network interface or from an external check service, per-host state files to avoid unnecessary updates, a dry-run mode, and simple backoff when ZoneEdit signals rate limits.
 
-Install via RPM
+<a id="downloads"></a>
+## Downloads <a href="#downloads">🔗</a> <span style="background:#eee;border-radius:4px;padding:2px 6px;font-size:90%;margin-left:8px;">downloads</span>
+
+Pre-built RPMs and source archives are available in the `dist/` directory of this repository:
+
+- [dist/zoneedit-ddclient-rpms.zip](dist/zoneedit-ddclient-rpms.zip)
+- [dist/noarch/zoneedit-ddclient-1.0-1.noarch.rpm](dist/noarch/zoneedit-ddclient-1.0-1.noarch.rpm)
+
+<a id="install-via-rpm"></a>
+## Install via RPM <a href="#install-via-rpm">🔗</a> <span style="background:#eee;border-radius:4px;padding:2px 6px;font-size:90%;margin-left:8px;">installation</span>
 
 A pre-built RPM is included in the `dist/` directory. Install it with:
 
@@ -18,7 +45,8 @@ sudo rpm -Uvh dist/noarch/zoneedit-ddclient-1.0-1.noarch.rpm
 
 The package installs the executable to `/usr/bin/zoneedit_ddclient`, the example config to `/etc/zoneedit_ddclient.ini.example`, and a `systemd` unit `zoneedit-ddclient.service`.
 
-Quick start:
+<a id="quick-start"></a>
+## Quick start <a href="#quick-start">🔗</a> <span style="background:#eee;border-radius:4px;padding:2px 6px;font-size:90%;margin-left:8px;">quickstart</span>
 
 1. Copy the example config to `/etc/zoneedit_ddclient.ini` and edit it (use the `[zoneedit]` section):
    ```bash
@@ -68,7 +96,8 @@ Quick start:
    sudo systemctl enable --now zoneedit-ddclient.service
    ```
 
-Notes:
+<a id="notes"></a>
+## Notes <a href="#notes">🔗</a> <span style="background:#eee;border-radius:4px;padding:2px 6px;font-size:90%;margin-left:8px;">notes</span>
 - The script supports `--dry-run` to preview the update call without sending credentials.
 - ZoneEdit enforces a minimum interval between updates (commonly 600 seconds). Set `interval` in your config to at least 600 to avoid rate-limit errors like `Minimum 600 seconds between requests`.
 - The daemon supports exponential backoff when ZoneEdit signals rate limits; this is on by default. Use `--no-backoff` to disable or set `backoff_max` in the config to limit the maximum backoff (seconds).
@@ -76,19 +105,10 @@ Notes:
 - If `requests` is not installed, the script falls back to urllib.
 - Keep your credentials secure and consider using an API token if available.
 
-## Downloads
-
-Pre-built RPMs and source archives are available in the `dist/` directory of this repository:
-
-- [dist/zoneedit-ddclient-rpms.zip](dist/zoneedit-ddclient-rpms.zip)
-- [dist/noarch/zoneedit-ddclient-1.0-1.noarch.rpm](dist/noarch/zoneedit-ddclient-1.0-1.noarch.rpm)
-
-(See the **Install via RPM** section above for installation commands and post-install steps.)
 
 
----
-
-Install from Git (build or run in-place)
+<a id="install-from-git"></a>
+## Install from Git (build or run in-place) <a href="#install-from-git">🔗</a> <span style="background:#eee;border-radius:4px;padding:2px 6px;font-size:90%;margin-left:8px;">git</span>
 
 If you prefer to install and configure from a Git clone:
 
