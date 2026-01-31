@@ -85,11 +85,6 @@ Pre-built RPMs and source archives are available in the `dist/` directory of thi
 
 (See the **Install via RPM** section above for installation commands and post-install steps.)
 
-Repository mirroring
-
-A Gitea workflow is included at `.gitea/workflows/mirror-to-github.yml` that will push changes to **https://github.com/ftsiadimos/zoneedit-ddclient.git** on every push to `main`/`master`.
-
-To enable the workflow, add a repository secret named `GITHUB_PAT` in your Gitea repo settings containing a GitHub Personal Access Token with `repo` (or `public_repo` for public repositories) scope so the action can authenticate and push.
 
 ---
 
