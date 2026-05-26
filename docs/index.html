@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZoneEdit DDClient Updater</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+      color: #102a43;
+      line-height: 1.7;
+    }
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    header {
+      padding: 2rem 0 1rem;
+      border-bottom: 1px solid #dbe4ea;
+    }
+    h1 {
+      margin: 0;
+      color: #1b6d56;
+      font-size: clamp(2rem, 3vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+    .subtitle {
+      margin: 1rem 0 0;
+      color: #334e68;
+      font-size: 1.05rem;
+    }
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding: 0;
+      list-style: none;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #dae4eb;
+      color: #264653;
+      box-shadow: 0 10px 30px rgba(16, 42, 67, 0.06);
+      font-weight: 600;
+    }
+    section {
+      margin-top: 2rem;
+      padding: 1.75rem;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 20px 50px rgba(16, 42, 67, 0.08);
+    }
+    h2 {
+      margin-top: 0;
+      color: #0f4a6d;
+      font-size: 1.5rem;
+    }
+    p {
+      color: #334e68;
+    }
+    ul {
+      margin: 1rem 0 0 1.25rem;
+    }
+    ol {
+      margin: 1rem 0 0 1.25rem;
+    }
+    code,
+    pre {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, monospace;
+      background: #f1f5f9;
+      border-radius: 0.75rem;
+    }
+    pre {
+      padding: 1rem;
+      overflow-x: auto;
+      border: 1px solid #cbd5e1;
+      margin: 1rem 0;
+    }
+    .tip-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-left: 4px solid #2a9d8f;
+      background: #e8f6f2;
+      color: #1f3d3a;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>ZoneEdit DDClient Updater</h1>
+      <p class="subtitle">A lightweight Python updater for ZoneEdit DNS A records that keeps your public IPv4 address in sync automatically.</p>
+      <ul class="badge-list">
+        <li class="badge">Reliable updates</li>
+        <li class="badge">`systemd` friendly</li>
+        <li class="badge">Dry-run support</li>
+        <li class="badge">State tracking</li>
+      </ul>
+    </header>
+
+    <section>
+      <h2>Why Use This Tool?</h2>
+      <ul>
+        <li><strong style="color:#e76f51;">Reliable</strong> automatic ZoneEdit A record updates</li>
+        <li><strong style="color:#2a9d8f;">Flexible</strong> one-shot or long-running `systemd` service mode</li>
+        <li><strong style="color:#f4a261;">Configurable</strong> IP detection via local interface or external provider</li>
+        <li><strong style="color:#2a9d8f;">Safe</strong> dry-run support with per-host state files</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Overview</h2>
+      <p>This updater is designed for minimal setup and robust operation. It can:</p>
+      <ul>
+        <li>Keep one or more ZoneEdit-hosted A records current</li>
+        <li>Run once for manual checks or run continuously as a `systemd` service</li>
+        <li>Detect your current IPv4 address from a local interface or an external provider</li>
+        <li>Preserve state across runs so updates happen only when needed</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Quick Start</h2>
+      <ol>
+        <li>Copy the example configuration file:
+          <pre><code>sudo cp /etc/zoneedit_ddclient.ini.example /etc/zoneedit_ddclient.ini
+sudo nano /etc/zoneedit_ddclient.ini</code></pre>
+        </li>
+        <li>Set <code>hostnames</code>, <code>username</code>, and <code>password</code> in <code>/etc/zoneedit_ddclient.ini</code>.</li>
+        <li>Test a single update:
+          <pre><code>python3 zoneedit_ddclient.py --config /etc/zoneedit_ddclient.ini --once</code></pre>
+        </li>
+        <li>Install and enable the `systemd` service:
+          <pre><code>sudo cp zoneedit-ddclient.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now zoneedit-ddclient.service</code></pre>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Tips</h2>
+      <div class="tip-box">
+        <p><strong>Pro tip:</strong></p>
+        <ul>
+          <li>Use <code>--dry-run</code> to verify actions without making changes.</li>
+          <li>Keep <code>/var/lib/zoneedit-ddclient/</code> writable so state files can be updated.</li>
+          <li>If you manage multiple hosts, configure each under <code>hostnames</code> and let the updater track state separately.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
